@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Главная страница{% endblock title %}
+
+{% block extrahead %}
+    <meta name="description" content="Ваши брови - Мой успех!" />
+{% endblock extrahead %}
+
+{% block content %}
+    <h1>{{ welcome.title }}</h1>
+    <div class="welcome_main">
+        <div class="welcome_displaying">
+            <p> <img class="my_photo" src="{{ home_info.photo.url }}" align="top" /></p>
+        </div>
+        <div class="main_text">
+            <p>{{ home_info.description }}</p>
+            <p><a class="btn_diplomas" href="{{'diplomas/'}}">Мои Дипломы</a></p>
+        </div>
+    </div>
+{% endblock content%}

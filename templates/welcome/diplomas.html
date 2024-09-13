@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Мои Дипломы{% endblock title %}
+
+{% block content %}
+{% if diplomas %}
+    <h1 class="title-diplomas">Мои дипломы</h1>
+<div class="diplomas">
+    {% for diplom in diplomas %}
+        <div class="diplom-info">
+            <p class="diplom-description">{{diplom.description}}</p>
+            <img class="diplom-photo" src="{{ diplom.photo.url }}" style="display:block;" alt="Фото диплома" />
+        </div>
+</div>
+    {% endfor %}
+{% endif %}
+{% endblock content%}

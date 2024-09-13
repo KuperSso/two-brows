@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ваши записи{% endblock title %}
+
+{% block content %}
+    <h1 class="my-title">Здесь будут отображаться Ваши записи, {{ user }}!</h1>
+    <div class="records displaying-from-left-1">
+        <div class="non-confirmed">
+            <h3 style="background-color: #FE50ED"> Записи ждут одобрения врача:</h3>
+            {% for cons in non_confirmed_record %}
+                <p><strong>{{ cons.service }}: {{ cons.date_time }}</strong></p>
+            {% endfor %}
+        </div>
+        <div class="confirmed">
+            <h3 style="background-color: #FE50ED">Вы записаны на:</h3>
+            {% for cons in confirmed_record %}
+                <p><strong>{{ cons.service }}: {{ cons.date_time }}</strong></p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

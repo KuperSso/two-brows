@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты{% endblock title %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta name="description" content="Содержит мои контакты и ссылки на социальные сети, где меня можно найти" />
+{% endblock extrahead %}
+
+{% block content %}
+    <h1><p>Связаться со мной:</p></h1>
+    <div class="social-block">
+        <div class="social vk displaying-from-left-2">
+            <h3>Мой ВКонтакте: </h3>
+            <a href="https://vk.com/okrvv" target="_blank"><i class="fa fa-vk fa-2x"></i></a>    
+        </div>
+        <div class="social telegram displaying-from-left-3">
+            <h3>Мой Telegram: </h3>
+            <a href="https://web.telegram.org/k/#@okrvv" target="_blank"><i class="fa fa-paper-plane fa-2x"></i></a>
+        </div>
+    </div>
+    
+{% endblock content %}

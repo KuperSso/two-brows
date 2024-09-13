@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Список услуг{% endblock title %}
+
+{% block extrahead %}
+    <meta name="description" content="Ознакомьтесь со списком предоставляемых услуг" />
+{% endblock extrahead %}
+
+{% block content %}
+    <h1 class="title-list">Услуги</h1>
+<div class="card">
+    {% for number, card in service_cards %}
+    <div class="card-record">
+        {% if card.photo %}
+        <img src="{{ card.photo.url }}" class="card-photo" style="display:block;">
+        {% endif %}
+        <h2 class="card-title"><b>{{ card.title }}</b></h2>
+        <div class="card-body">
+            <p><a class="btn-card" href="{{ card.get_absolute_url }}">Записаться</a></p>
+        </div>
+    </div>     
+    {% endfor %}
+</div>
+{% endblock content %}

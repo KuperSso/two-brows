@@ -1,0 +1,41 @@
+services:
+ web:
+  build:
+   context: .
+   dockerfile: ./docker/Dockerfile
+  command: gunicorn twobrows.wsgi:application -b 0.0.0.0:8000
+  expose:
+   - 8000
+  depends_on:
+   - db
+  restart: always
+  volumes:
+   - .:/code
+   - static_volume:/home/app/web/staticfiles
+   - media_volume:/home/app/web/mediafiles
+  env_file:
+   - .env
+ db:
+  image: postgres:15.6
+  volumes:
+   - postgres_data:/var/lib/postgresql/data/
+  ports:
+   - 5432:5432
+  env_file:
+   - .env
+  restart: always
+ nginx:
+  restart: unless-stopped
+  image: nginx:latest
+  depends_on:
+   - web
+  ports:
+   - "80:80"
+  volumes:
+   - ./docker/nginx/test/:/etc/nginx/conf.d/
+   - static_volume:/home/app/web/staticfiles
+   - media_volume:/home/app/web/mediafiles
+volumes:
+ postgres_data:
+ static_volume:
+ media_volume:

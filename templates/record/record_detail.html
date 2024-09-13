@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+{{ form.media }}
+{% endblock extrahead %}
+
+{% block title %}Выбранная услуга{% endblock title %}
+
+{% block content %}
+    <h1 class="service-title">{{ service.title }}</h1>
+<div class="records">
+    <h4>{{ service.description }}</h4>
+    <form method="post" action="{{ service.get_absolute_url }}">
+        {% csrf_token %}
+        {{ form.errors }}
+        <div class="displaying"> 
+            {{ form|crispy }}
+        </div>
+        <div class="displaying-from-left-0">
+            <button class="btn-record" type="submit">Записаться</button>
+        </div>
+    </form>
+</div>    
+{% endblock content %}
+ 

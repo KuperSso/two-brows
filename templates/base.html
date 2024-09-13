@@ -1,0 +1,48 @@
+{% load static %}
+{% load welcome_tags %}
+
+<!DOCTYPE html>
+<html>
+<head> 
+	<title>{% block title %}{% endblock title %}</title>
+	{% block extrahead %}{% endblock extrahead %}
+	<link type="text/css" href="{% static 'css/base.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" border=0 cellpadding="0" cellspacing="0">
+<tr><td valign=top>
+{% block mainmenu %}
+	<div class="header">
+		<ul id="mainmenu" class="mainmenu">
+		<li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
+{% get_menu as menu %}
+{% for m in menu %}
+<li><a href="{% url m.view_name %}">{{m.title}}</a></li>
+{% endfor %}
+{% if user.is_authenticated %}
+			<li class="last"><a href="{% url 'users:profile' %}">{{user.username}} </a> <span style = "color:#FE50ED"> | </span> <a href="{% url 'users:logout' %}">Выйти</a></li>
+{% else %}
+<li class="last"><a href="{% url 'users:login' %}">Войти</a> <span style = "color:#FE50ED"> | </span> <a href="{% url 'users:register' %}">Регистрация</a></li>
+{% endif %}
+		</ul>
+		<div class="clear"></div>
+	</div>
+{% endblock mainmenu %}
+
+
+<div class="content">
+	{% block content %}
+	{% endblock content %}
+</div>
+	<!-- Footer -->
+	<tr><td valign=top>
+		<div id="footer">
+			<p>&copy; 2024 Two Brows | Ягуар в мире бровей<p>
+		</div>
+	</td></tr></table>
+<!-- Конец footer'а и страницы -->
+	</body>
+	</html>
