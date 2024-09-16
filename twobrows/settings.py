@@ -35,6 +35,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     ]
 
+CSRF_TRUSTED_ORIGINS = ['https://two-brows.ru', ]
+
 ADMINS = (
     ("Ilya", "Kumpan2003@yandex.ru"),
     ("Olya", "two_brows@mail.ru"),
