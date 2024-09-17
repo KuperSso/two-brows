@@ -37,11 +37,6 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = ['https://two-brows.ru']
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'https://two-brows.ru',
-  )
-
 ADMINS = (
     ("Ilya", "Kumpan2003@yandex.ru"),
     ("Olya", "two_brows@mail.ru"),
@@ -77,7 +72,6 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     "debug_toolbar",
     "tempus_dominus",
-    'corsheaders',
     #apps
     'welcome.apps.WelcomeConfig',
     'record.apps.RecordConfig', 
