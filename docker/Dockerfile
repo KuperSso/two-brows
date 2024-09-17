@@ -6,16 +6,16 @@ ENV PYTHONUNBUFFERED 1
 
 RUN addgroup --system app && adduser --system --group app
                                                                             
-ENV APP_HOME=/home/app/web
+ENV APP_HOME=/home/app
 RUN mkdir -p $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/mediafiles
 WORKDIR $APP_HOME
 
-COPY ./requirements.txt .
+COPY ./backend/requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . $APP_HOME
+COPY ./backend $APP_HOME
 
 RUN chown -R app:app $APP_HOME
 

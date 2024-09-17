@@ -1,7 +1,8 @@
 version: '3.3'
 
 services:
- web:
+ backend:
+  container_name: backend
   build:
    context: .
    dockerfile: ./docker/Dockerfile
@@ -12,14 +13,14 @@ services:
    - db
   restart: always
   volumes:
-   - .:/code
-   - static_volume:/home/app/web/staticfiles
-   - media_volume:/home/app/web/mediafiles
+   - ./backend:/home/app/backend
+   - static_volume:/home/app/backend/staticfiles
+   - media_volume:/home/app/backend/mediafiles
   env_file:
    - .env
  db:
-  image: postgres:15.6
   container_name: db
+  image: postgres:15.6
   volumes:
    - postgres_data:/var/lib/postgresql/data/
   ports:
@@ -31,7 +32,7 @@ services:
   restart: unless-stopped
   image: staticfloat/nginx-certbot
   depends_on:
-   - web
+   - backend
   ports:
    - "80:80"
    - "443:443"
@@ -40,8 +41,8 @@ services:
   volumes:
    - ./docker/nginx/conf/:/etc/nginx/user.conf.d:ro
    - letsencrypt:/etc/letsencrypt
-   - static_volume:/home/app/web/staticfiles
-   - media_volume:/home/app/web/mediafiles
+   - static_volume:/home/app/backend/staticfiles
+   - media_volume:/home/app/backend/mediafiles
 volumes:
  letsencrypt:
  postgres_data:

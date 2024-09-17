@@ -1,5 +1,5 @@
 services:
- web:
+ backend:
   build:
    context: .
    dockerfile: ./docker/Dockerfile
@@ -11,8 +11,8 @@ services:
   restart: always
   volumes:
    - .:/code
-   - static_volume:/home/app/web/staticfiles
-   - media_volume:/home/app/web/mediafiles
+   - static_volume:/home/app/backend/staticfiles
+   - media_volume:/home/app/backend/mediafiles
   env_file:
    - .env
  db:
@@ -28,13 +28,13 @@ services:
   restart: unless-stopped
   image: nginx:latest
   depends_on:
-   - web
+   - backend
   ports:
    - "80:80"
   volumes:
    - ./docker/nginx/test/:/etc/nginx/conf.d/
-   - static_volume:/home/app/web/staticfiles
-   - media_volume:/home/app/web/mediafiles
+   - static_volume:/home/app/backend/staticfiles
+   - media_volume:/home/app/backend/mediafiles
 volumes:
  postgres_data:
  static_volume:
