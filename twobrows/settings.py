@@ -35,7 +35,12 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     ]
 
-CSRF_TRUSTED_ORIGINS = ['https://two-brows.ru', ]
+CSRF_TRUSTED_ORIGINS = ['https://two-brows.ru']
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'https://two-brows.ru',
+  )
 
 ADMINS = (
     ("Ilya", "Kumpan2003@yandex.ru"),
@@ -72,6 +77,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     "debug_toolbar",
     "tempus_dominus",
+    'corsheaders',
     #apps
     'welcome.apps.WelcomeConfig',
     'record.apps.RecordConfig', 
@@ -87,6 +93,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'twobrows.urls'
